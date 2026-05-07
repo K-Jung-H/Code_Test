@@ -1,5 +1,8 @@
+#include <string>
 #include <vector>
 #include <algorithm>
+#include <numeric>
+#include <cmath>
 
 using namespace std;
 
@@ -41,3 +44,22 @@ int gcd(int a, int b) {
 int gcd(int a, int b) {
     return b ? gcd(b, a % b) : a;
 }
+
+// N진수 변환 함수
+string Change_N(int n, int m) 
+{
+    if (n < m) return to_string(n);
+    
+    return Change_N(n / m, m) + to_string(n % m);
+}
+
+int N_Change(string n, int m)
+{
+    long long result = 0;
+
+    for (char c : n)
+        result = result * m + (c - '0');
+    return result;
+}
+
+//long long result = stoll(n, nullptr, m);
