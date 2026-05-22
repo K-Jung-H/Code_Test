@@ -62,4 +62,36 @@ int N_Change(string n, int m)
     return result;
 }
 
+// nullptr -> 저장할 변수 위치 -> 함수 반환값으로 해결 가능
+// m진수
 //long long result = stoll(n, nullptr, m);
+
+
+// 1 ~ N 까지의 소수 개수
+int 에라토스테네스의체(int n)
+{
+    vector<bool> is_prime(n+1,true);
+    is_prime[0] = false;
+    is_prime[1] = false;
+    
+    for (int i = 2; i * i <= n; i++) {
+        if (is_prime[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    
+
+    return count(is_prime.begin(),is_prime.end(), true);
+}
+
+// 2진법 변환기
+string toBinary(int num)
+{
+    string b = "";
+    for (int i = num; i > 0; i /= 2) 
+        b += to_string(i % 2);
+    
+    return b;
+}
